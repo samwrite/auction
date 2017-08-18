@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Current Auctions</h1>
+Hi @ViewBag.User.First!
+<a href="/logout">Logout</a>
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Seller</th>
+    <th>Top Bid</th>
+    <th>Time Remaining</th>
+    <th></th> 
+  </tr> 
+
+@{
+  foreach(var ite in ViewBag.Items)
+  {
+    <tr>
+        <td><a href="/item/@ite.ItemId">@ite.Name</td>
+        <td>@ite.Creator.First</td>
+        <td>$@ite.HighestBid</td>
+        <td>@((ite.EndDate - DateTime.Today).TotalDays) Days</td>
+        <td>
+        @if(ite.Creator == ViewBag.User)
+        {
+            <a href="delete/@ite.ItemId">delete</a>
+        }
+        </td>
+    </tr>
+  }
+}
+</table>
+<p>Your Current Wallet: $@ViewBag.User.Balance</p>
+<a href="/create"><button>New Auction</button></a>

@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "View Item";
+}
+<a href="/dashboard">Dashboard</a>
+<a href="/logout">Logout</a>
+
+<h1> @ViewBag.Item.Name</h1>
+<h2>Created by: @ViewBag.Item.Creator.First </h2>
+<h2>Time Remaining: @((ViewBag.Item.EndDate - DateTime.Today).TotalDays) Days </h2>
+<p>@ViewBag.Item.Description</p>
+Current Highest Bid: @ViewBag.Item.HighestBid
+By: @ViewBag.Item.HighestBidder.First
+<form action="bid/@ViewBag.Item.ItemId" method="POST">
+    <input type="number" name="bid" placeholder="Your bid goes here...">
+    <input type="submit" value="Bid!">
+</form>
+@ViewBag.BidError

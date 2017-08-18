@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Login/Register";
+}
+<h1>Login</h1>
+<form action="loginprocess" method="post">
+    Username: <input type="text" name="LUsername"><br>
+    Password: <input type="password" name="Password"><br>
+    <input type="submit" value="Login">
+</form>
+@ViewBag.LoginError
+
+<h1>Register</h1>
+@model auction.Models.RegUser
+<form asp-controller="Home" asp-action="registerprocess" method="post">
+    <label asp-for="First"></label>
+    <input asp-for="First"/>
+    <span asp-validation-for="First"></span><br>
+    
+    <label asp-for="Last"></label>
+    <input asp-for="Last"/>
+    <span asp-validation-for="Last"></span><br>
+    
+    <label asp-for="Username"></label>
+    <input asp-for="Username"/>
+    <span asp-validation-for="Username"></span><br>
+    
+    <label asp-for="Password"></label>
+    <input asp-for="Password"/>
+    <span asp-validation-for="Password"></span><br>
+    
+    <label asp-for="ConfirmPassword"></label>
+    <input asp-for="ConfirmPassword"/>
+    <span asp-validation-for="ConfirmPassword"></span><br>
+    
+    <button type="submit">Register</button>
+</form>
+@ViewBag.ErrorRegister
